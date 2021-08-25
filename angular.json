@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "personalni-trener": {
+    "trening-po-mjeri": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/personalni-trener",
+            "outputPath": "dist/trening-po-mjeri",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -30,7 +30,10 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js",
+	            "node_modules/bootstrap/dist/js/bootstrap.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -66,18 +69,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "personalni-trener:build"
+            "browserTarget": "trening-po-mjeri:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "personalni-trener:build:production"
+              "browserTarget": "trening-po-mjeri:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "personalni-trener:build"
+            "browserTarget": "trening-po-mjeri:build"
           }
         },
         "test": {
@@ -114,15 +117,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "personalni-trener:serve"
+            "devServerTarget": "trening-po-mjeri:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "personalni-trener:serve:production"
+              "devServerTarget": "trening-po-mjeri:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "personalni-trener"
+  "defaultProject": "trening-po-mjeri"
 }

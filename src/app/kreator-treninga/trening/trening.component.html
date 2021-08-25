@@ -1,0 +1,117 @@
+<div class="row">
+    <div class="col-lg-3">
+        <app-vertikalni2></app-vertikalni2>
+      </div>
+      <div class="col-lg-9">
+          <div class="naslov display-4">
+              {{ trening.naslov || 'Naziv treninga'}}
+          </div>
+          <br><br>
+          <div class="container-fluid">
+            <form #f="ngForm" class="row" (ngSubmit)="sacuvaj(f)">
+                <div class="col-lg-5" ngModelGroup="vjezbe">
+                    <div *ngFor="let vjezba of trening.vjezbe; let i = index">
+                        <div class="card border-success" [ngModelGroup]="i">
+                            <div class="card-header">
+                              <h4>
+                                {{ i+1 }}. {{ vjezba.naslov }}
+                              </h4>
+                            </div>
+                            <div class="card-body p-1">
+                              <div class="container-fluid">
+                                <div class="row">
+                                  <div class="col-8">
+                                    <img [src]="vjezba.slika ? '/assets/slike/' + vjezba.slika : '/assets/slike/nema.png' ">
+                                  </div>
+                                  <div class="col-4">
+                                    <div>
+                                      <button type="button" class="btn btn-success btn-block btn-sm p-0" 
+                                                            (click)="premjestiVjezbu(vjezba, 0)">Vrh</button>
+                                      <button type="button" class="btn btn-warning btn-block btn-sm" 
+                                                            (click)="premjestiVjezbu(vjezba, i-1)">Gore</button>
+                                      <button type="button" class="btn btn-warning btn-block btn-sm" 
+                                                            (click)="premjestiVjezbu(vjezba, i+1)">Dolje</button>
+                                      <button type="button" class="btn btn-success btn-block btn-sm p-0" 
+                                                            (click)="premjestiVjezbu(vjezba, trening.vjezbe.length-1)">Dno</button>
+                                      <button type="button" class="btn btn-danger btn-block btn-sm"
+                                                            (click)="ukloniVjezbu(vjezba)">Ukloni</button>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row pt-2 pl-3 pr-3">
+                                  <select name="trajanje" class="custom-select" [(ngModel)]="vjezba.trajanje">
+                                    <option *ngFor="let trajanje of trajanja" [ngValue]="trajanje.iznos">
+                                      {{ trajanje.slovima }}
+                                    </option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <br>
+                    </div>
+                    <div>
+                      <input type="hidden" name="brVjezbi" #brVjezbi="ngModel" 
+                             [(ngModel)]="trening.vjezbe.length" pattern="[1-9][0-9]*">
+                      <label *ngIf="brVjezbi.control.hasError('pattern') && uklonjenaZadnja" class="greska">
+                        Morate odabrati barem jednu vjezbu.
+                      </label>
+                    </div>
+                </div>
+                <div class="col-lg-7 pl-5">
+                  <div class="form-group row">
+                    <label for="fNazivID">ID:</label>
+                    <input type="text" name="nazivID" #vNazivID="ngModel" id="fNazivID" class="form-control" placeholder="mora biti jedinstven" 
+                                       [(ngModel)]="trening.nazivID" required>
+                    <label class="greska" *ngIf="vNazivID.control.hasError('required') && vNazivID.touched">Polje ID je obavezno.</label>
+                  </div>
+                  <div class="form-group row">
+                    <label for="fNaslov">Naslov:</label>
+                    <input type="text" name="naslov" #vNaslov="ngModel" id="fNaslov" class="form-control" placeholder="unesite naslov treninga" 
+                                       [(ngModel)]="trening.naslov" required minlength="5" maxlength="20">
+                    <div class="sirina" *ngIf="vNaslov.touched">
+                      <label class="greska" *ngIf="(vNaslov.control.hasError('minlength') || vNaslov.control.hasError('maxlength')) && 
+                                                  (trening.naslov.length > 0)">
+                      Naslov mora imati izmedju 5 i 20 karaktera.
+                    </label>
+                    <label class="greska" *ngIf="vNaslov.control.hasError('required')">Polje, naslov, je obavezno.</label>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="fOpis">Opis:</label>
+                    <textarea type="text" name="opis" id="fOpis" class="form-control" placeholder="opis treninga (opciono)..." 
+                                          [(ngModel)]="trening.opis"></textarea>
+                  </div>
+                  <div class="form-group row">
+                    <label for="fTrajanjeOdmora">Pauza izmedju vježbi:</label>
+                    <input type="number" name="trajanjeOdmora" id="fTrajanjeOdmora" class="form-control" placeholder="pauza u sekundama" 
+                                         min="0" max="60" step="10" [(ngModel)]="trening.trajanjeOdmora">
+                  </div>
+                  <br>
+                  <div class="row">
+                    <p>Ukupan broj vježbi: {{trening.vjezbe?.length}}</p>
+                  </div>
+                  <div class="row">
+                    <p>Trajanje treninga: {{ (trening.vjezbe.length > 0) ? (trening.trajanjeTreninga() | formatiranjeSekundi) : 0 }}</p>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <button type="submit" class="btn btn-info">Sačuvaj</button>
+                  </div>
+                  <br><br>
+                </div>
+              </form>
+          </div>
+      </div>
+</div>
+
+
+<br><br>
+<p>Struktura modela (podataka iz forme):</p>
+<pre>{{ f.value | json }}</pre>
+
+<div>----------------------------------</div>
+
+<p>Struktura objekta, trening:</p>
+<pre>{{ trening | json }}</pre>
+

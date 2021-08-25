@@ -1,0 +1,8 @@
+<a *ngFor="let v of spisakVjezbi|poredjajPo:'naslov'" 
+    class="list-group-item list-group-item-action list-group-item-warning pokazivac" 
+    (click)="dodajVjezbu(v)">
+    {{ v.naslov }}
+</a>
+
+<br><br>
+
