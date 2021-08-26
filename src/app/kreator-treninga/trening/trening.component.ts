@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { FormGroup, NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Trening } from 'src/app/sustina/Trening';
 import { KreatorTreningaService } from '../kt-servisi/kreator-treninga.service';
 import { Vjezba } from './../../sustina/Vjezba';
@@ -27,7 +27,10 @@ export class TreningComponent implements OnInit, OnDestroy {
     { slovima: '2 minuta', iznos: 120 }
   ];
 
-  constructor(private route: ActivatedRoute, private ktServis: KreatorTreningaService) { }
+  constructor(
+    private route: ActivatedRoute, 
+    private ktServis: KreatorTreningaService, 
+    private router: Router) { }
 
   ngOnInit(): void {
     // 'trening' - obavezno je da bude isto ime, kao u 'resolve' u 'kreator-treninga-routing'
@@ -46,8 +49,10 @@ export class TreningComponent implements OnInit, OnDestroy {
     this.ktServis.ukloniVjezbu(v);
   }
 
-  sacuvaj(f: NgForm) {
-    console.log(f.value);
+  sacuvaj(forma: FormGroup) {
+    if (!forma.valid) return;
+    this.ktServis.sacuvaj();
+    this.router.navigate(['/kreator/treninzi']);
   }
 
   ngOnDestroy() {

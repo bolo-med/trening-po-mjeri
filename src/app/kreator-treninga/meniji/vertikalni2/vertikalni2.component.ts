@@ -19,7 +19,21 @@ export class Vertikalni2Component implements OnInit {
   }
 
   dodajVjezbu(vjezba: Vjezba) {
-    this.kreatorTreningaServis.dodajVjezbu(vjezba);
+    this.kreatorTreningaServis.dodajVjezbu(this.novaRef(vjezba));
+  }
+
+  novaRef(vjezbaOrig: Vjezba): Vjezba {
+    let vjezbaNova: Vjezba = new Vjezba(
+      vjezbaOrig.nazivID,
+      vjezbaOrig.naslov,
+      vjezbaOrig.opis,
+      vjezbaOrig.trajanje,
+      vjezbaOrig.slika
+    );
+    //if (vjezbaOrig.zvuk) vjezbaNova.zvuk = vjezbaOrig.zvuk;
+    //if (vjezbaOrig.snimci) vjezbaNova.snimci = vjezbaOrig.snimci.slice();
+    return vjezbaNova;
   }
 
 }
+

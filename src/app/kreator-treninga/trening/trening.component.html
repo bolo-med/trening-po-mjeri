@@ -8,7 +8,7 @@
           </div>
           <br><br>
           <div class="container-fluid">
-            <form #f="ngForm" class="row" (ngSubmit)="sacuvaj(f)">
+            <form #f="ngForm" class="row" (ngSubmit)="sacuvaj(f.form)">
                 <div class="col-lg-5" ngModelGroup="vjezbe">
                     <div *ngFor="let vjezba of trening.vjezbe; let i = index">
                         <div class="card border-success" [ngModelGroup]="i">

@@ -73,13 +73,12 @@ export class TreningService {
   }
 
   popuniTreninge() {
-    
     this.treninzi.push(
       new Trening(
         'tr01',
         '2 i po minutni trening',
         30,
-        this.vjezbe,
+        this.noveReference(this.vjezbe),
         'Osnovni trening za snagu.'
       )
     );
@@ -89,7 +88,7 @@ export class TreningService {
         'tr02',
         'proba 02 aaaaaaaaa',
         32,
-        this.vjezbe,
+        this.noveReference(this.vjezbe),
         'neki opis'
       )
     );
@@ -121,6 +120,23 @@ export class TreningService {
     }
 
     return vjezbe;
+  }
+
+  dodajTrening(trening: Trening): Trening {
+    if (trening.nazivID) {
+      this.treninzi.push(trening);
+      return trening;
+    }
+    return null;
+  }
+
+  azurirajTrening(trening: Trening) {
+    for (let i = 0; i < this.treninzi.length; i++) {
+      if (this.treninzi[i].nazivID === trening.nazivID) {
+        this.treninzi[i] = trening;
+        break;
+      }
+    }
   }
 
 }
