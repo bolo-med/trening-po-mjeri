@@ -14,7 +14,8 @@ export class TreningComponent implements OnInit, OnDestroy {
 
   trening: Trening;
   sub: any;
-  uklonjenaZadnja: boolean = false;
+  vecUklanjane: boolean = false;
+  potvrdio: boolean = false;
 
   trajanja = [
     { slovima: '15 sekundi', iznos: 15 },
@@ -45,12 +46,16 @@ export class TreningComponent implements OnInit, OnDestroy {
   }
 
   ukloniVjezbu(v: Vjezba) {
-    this.uklonjenaZadnja = true;
+    this.vecUklanjane = true;
     this.ktServis.ukloniVjezbu(v);
   }
 
   sacuvaj(forma: FormGroup) {
-    if (!forma.valid) return;
+    this.potvrdio = true;
+    if (!forma.valid) {
+      console.log('Obrazac nije pravilno popunjen!');
+      return;
+    }
     this.ktServis.sacuvaj();
     this.router.navigate(['/kreator/treninzi']);
   }

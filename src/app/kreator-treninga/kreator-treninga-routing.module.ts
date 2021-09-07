@@ -10,6 +10,7 @@ import { TreningComponent } from './trening/trening.component';
 import { VjezbeComponent } from './vjezbe/vjezbe.component';
 import { VjezbaComponent } from './vjezba/vjezba.component';
 import { TreningResolver } from './trening/trening.resolver';
+import { VjezbaResolver } from './vjezba/vjezba.resolver';
 
 const routes: Routes = [
     {
@@ -21,8 +22,8 @@ const routes: Routes = [
             { path: 'trening/novi', component: TreningComponent, resolve: { trening: TreningResolver } },
             { path: 'trening/:id', component: TreningComponent, resolve: { trening: TreningResolver }  },
             { path: 'vjezbe', component: VjezbeComponent },
-            { path: 'vjezba/nova', component: VjezbaComponent },
-            { path: 'vjezba/:id', component: VjezbaComponent }
+            { path: 'vjezba/nova', component: VjezbaComponent, resolve: {vjezba: VjezbaResolver} },
+            { path: 'vjezba/:id', component: VjezbaComponent, resolve: {vjezba: VjezbaResolver} }
         ]
     }
 ];

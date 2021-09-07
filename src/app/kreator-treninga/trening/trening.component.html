@@ -51,9 +51,9 @@
                           <br>
                     </div>
                     <div>
-                      <input type="hidden" name="brVjezbi" #brVjezbi="ngModel" 
+                      <input type="hidden" class="form-control" name="brVjezbi" #brVjezbi="ngModel" 
                              [(ngModel)]="trening.vjezbe.length" pattern="[1-9][0-9]*">
-                      <label *ngIf="brVjezbi.control.hasError('pattern') && uklonjenaZadnja" class="greska">
+                      <label *ngIf="brVjezbi.control.hasError('pattern') && (vecUklanjane || potvrdio)" class="greska">
                         Morate odabrati barem jednu vjezbu.
                       </label>
                     </div>
@@ -63,18 +63,20 @@
                     <label for="fNazivID">ID:</label>
                     <input type="text" name="nazivID" #vNazivID="ngModel" id="fNazivID" class="form-control" placeholder="mora biti jedinstven" 
                                        [(ngModel)]="trening.nazivID" required>
-                    <label class="greska" *ngIf="vNazivID.control.hasError('required') && vNazivID.touched">Polje ID je obavezno.</label>
+                    <label class="greska" *ngIf="vNazivID.control.hasError('required') && (vNazivID.touched || potvrdio)">
+                      Polje ID je obavezno.
+                    </label>
                   </div>
                   <div class="form-group row">
                     <label for="fNaslov">Naslov:</label>
                     <input type="text" name="naslov" #vNaslov="ngModel" id="fNaslov" class="form-control" placeholder="unesite naslov treninga" 
                                        [(ngModel)]="trening.naslov" required minlength="5" maxlength="20">
-                    <div class="sirina" *ngIf="vNaslov.touched">
+                    <div class="sirina" *ngIf="(vNaslov.touched || potvrdio)">
                       <label class="greska" *ngIf="(vNaslov.control.hasError('minlength') || vNaslov.control.hasError('maxlength')) && 
                                                   (trening.naslov.length > 0)">
-                      Naslov mora imati izmedju 5 i 20 karaktera.
-                    </label>
-                    <label class="greska" *ngIf="vNaslov.control.hasError('required')">Polje, naslov, je obavezno.</label>
+                        Naslov mora imati izmedju 5 i 20 karaktera.
+                      </label>
+                      <label class="greska" *ngIf="vNaslov.control.hasError('required')">Polje, naslov, je obavezno.</label>
                     </div>
                   </div>
                   <div class="form-group row">

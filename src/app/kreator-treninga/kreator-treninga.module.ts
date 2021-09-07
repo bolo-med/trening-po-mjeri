@@ -12,7 +12,9 @@ import { Vertikalni2Component } from './meniji/vertikalni2/vertikalni2.component
 import { RazmjenaModule } from '../razmjena/razmjena.module';
 import { KreatorTreningaService } from './kt-servisi/kreator-treninga.service';
 import { TreningResolver } from './trening/trening.resolver';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { KreatorVjezbeService } from './kt-servisi/kreator-vjezbe.service';
+import { VjezbaResolver } from './vjezba/vjezba.resolver';
 
 @NgModule({
   declarations: [
@@ -29,10 +31,11 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     KreatorTreningaRoutingModule,
     RazmjenaModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   // Bice ucitano samo kad se pristupi svojstvu kreator-treninga. NE moze mu se pristupiti iz ostalih modula.
-  providers: [KreatorTreningaService, TreningResolver]
+  providers: [KreatorTreningaService, KreatorVjezbeService, TreningResolver, VjezbaResolver]
 })
 export class KreatorTreningaModule { }
 

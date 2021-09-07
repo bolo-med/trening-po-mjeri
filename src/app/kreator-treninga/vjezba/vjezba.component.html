@@ -1,1 +1,56 @@
-<p>vjezba works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="naslov display-4">{{ vjezbaObrazac.controls['naslov'].value || 'Naslov nove vježbe' }}</div>
+            <br><br>
+        </div>
+    </div>
+</div>
+
+
+<form class="row" [formGroup]="vjezbaObrazac" (ngSubmit)='potvrdaUnosa(vjezbaObrazac)'>
+    <div class="col-lg-7">
+        <div class="form-group">
+            <label for="nazivID">ID vježbe</label>
+            <input id="nazivID" class="form-control" name="nazivID" formControlName="nazivID" placeholder="mora biti jedinstven...">
+            <div class="alert alert-danger" role="alert" *ngIf="vjezbaObrazac.controls['nazivID'].hasError('required') && 
+                                                                (vjezbaObrazac.controls['nazivID'].touched || potvrdjena)">
+                Polje "ID" je obavezno!
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="naslov">Naslov</label>
+            <input id="naslov" class="form-control" name="naslov" formControlName="naslov" placeholder="naslov vježbe...">
+            <div class="alert alert-danger" role="alert" *ngIf="vjezbaObrazac.controls['naslov'].hasError('required') && 
+                                                                (vjezbaObrazac.controls['naslov'].touched || potvrdjena)">
+                Polje "naslov" je obavezno!
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="opis">Opis</label>
+            <!-- ne mora name="opis" -->
+            <textarea id="opis" class="form-control" formControlName="opis" placeholder="opis vježbe..."></textarea>
+            <div class="alert alert-danger" role="alert" *ngIf="vjezbaObrazac.controls['opis'].hasError('required') && 
+                                                                (vjezbaObrazac.controls['opis'].touched || potvrdjena)">
+                Polje "opis" je obavezno!
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="trajanje">Trajanje (u sekundama)</label>
+            <input type="number" id="trajanje" class="form-control" formControlName="trajanje" min="0" max="180" step="10">
+        </div>
+    </div>
+    <div class="col-lg-5">
+        <div class="form-group">
+            <img [src]="vjezbaObrazac.controls['slika'].value ? 'assets/slike/' + vjezbaObrazac.controls['slika'].value : 
+                                                                'assets/slike/nema.png'">
+            <br><br>
+            <input type="text" class="form-control" formControlName="slika" placeholder="naziv slike...">
+            <div class="alert alert-danger" role="alert" *ngIf="vjezbaObrazac.controls['slika'].hasError('required') && 
+                                                                (vjezbaObrazac.controls['slika'].touched || potvrdjena)">
+                Polje je obavezno!
+            </div>
+        </div>
+        <button type="submit" class="btn btn-info">Potvrdi unos</button>
+    </div>
+</form>

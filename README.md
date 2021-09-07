@@ -32,7 +32,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 Module - za organizaciju koda \
 Child routing sa lazy loadingom (bez lazy loadinga mi nije radilo) \
-Lazy loading (modul se ucitava, tek kad postoji potreba; suprotno od SPA, gdje se svi moduli odmah ucitavaju) \
+Lazy loading (modul se ucitava, tek kad postoji potreba; suprotno od SPA, gdje se svi moduli odmah ucitavaju)
 
 ![](sl01.PNG)
 ![](sl02.PNG)
@@ -41,5 +41,6 @@ Niz providers, u modulu (bice ucitano samo kad se pristupi svojstvu kreator-tren
 Metoda splice, za manipulaciju nizom - dodavanje elementa, uklanjanje, premjestanje. \
 Route guards - Resolve. \
 ngModelGroup - grupisanje elemenata forme u jedan objekat. \
+Forme - Template-driven i Reactive
 
 "# trening-po-mjeri" 

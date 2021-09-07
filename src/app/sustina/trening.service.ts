@@ -34,6 +34,15 @@ export class TreningService {
     return this.vjezbe;
   }
 
+  dajVjezbu(id: string): Vjezba {
+    for (let vjezba of this.vjezbe) {
+      if (vjezba.nazivID === id) {
+        return vjezba;
+      }
+    }
+    return null;
+  }
+
   popuniVjezbe() {
     this.vjezbe.push(
       new Vjezba(
