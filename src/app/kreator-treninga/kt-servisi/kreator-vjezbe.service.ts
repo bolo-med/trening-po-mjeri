@@ -24,5 +24,18 @@ export class KreatorVjezbeService {
     return this.predmetnaVjezba;
   }
 
+  ukloniSnimak(indeks: number): void {
+    if (indeks >= 0) {
+      this.predmetnaVjezba.snimci.splice(indeks, 1)
+    };
+  }
+
+  dodajPrazanSnimak() {
+    if (!this.predmetnaVjezba.snimci) {
+      this.predmetnaVjezba.snimci = [];
+    }
+    this.predmetnaVjezba.snimci.push('');
+  }
+
 
 }

@@ -39,18 +39,50 @@
             <label for="trajanje">Trajanje (u sekundama)</label>
             <input type="number" id="trajanje" class="form-control" formControlName="trajanje" min="0" max="180" step="10">
         </div>
+        <div class="form-group">
+            <label for="zvuk">Zvuk</label>
+            <input type="text" id="zvuk" class="form-control" formControlName="zvuk" placeholder="audio fajl iz assets...">
+        </div>
     </div>
     <div class="col-lg-5">
         <div class="form-group">
             <img [src]="vjezbaObrazac.controls['slika'].value ? 'assets/slike/' + vjezbaObrazac.controls['slika'].value : 
                                                                 'assets/slike/nema.png'">
             <br><br>
-            <input type="text" class="form-control" formControlName="slika" placeholder="naziv slike...">
+            <label>Slika</label>
+            <input type="text" class="form-control" formControlName="slika" placeholder="fajl iz assets...">
             <div class="alert alert-danger" role="alert" *ngIf="vjezbaObrazac.controls['slika'].hasError('required') && 
                                                                 (vjezbaObrazac.controls['slika'].touched || potvrdjena)">
-                Polje je obavezno!
+                Polje slika je obavezno!
             </div>
         </div>
+        <br>
+        <div class="form-group" formArrayName="snimci">
+            <label>
+                Snimci sa YT-a <br>
+                <small>(Unesite samo dio nakon: https://www.youtube.com/embed/)</small>
+            </label>
+            <div *ngFor="let snimak of nizZaFormu.controls; let i = index" class="form-row mb-2">
+                <div class="col-10">
+                    <input type="text" class="form-control" [formControlName]="i">
+                    <div class="alert alert-danger" role="alert" *ngIf="nizZaFormu.controls[i].hasError('required') && 
+                                                                (nizZaFormu.controls[i].touched || potvrdjena)">
+                        Polje za video je obavezno!
+                    </div>
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-danger" (click)="ukloniSnimak(i)">Ukloni</button>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-warning" (click)="dodajPoljeSnimka()" 
+                                                          [disabled]="(vjezba.snimci && (vjezba.snimci.length >= 5)) ? true : false">
+                Dodaj polje za snimak
+            </button>
+        </div>
+        <br>
         <button type="submit" class="btn btn-info">Potvrdi unos</button>
+        <br><br>
     </div>
 </form>

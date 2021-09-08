@@ -52,7 +52,7 @@ export class TreningService {
         45,
         'sklekovi.jpg',
         '',
-        []
+        ['bfBts05uD7c', 'dCqqJg-zxQw']
       )
     );
 

@@ -37,7 +37,7 @@ export class VjezbaComponent implements OnInit, OnDestroy {
       'opis': [this.vjezba.opis, Validators.required],
       'trajanje': [this.vjezba.trajanje, Validators.required],
       'slika': [this.vjezba.slika, Validators.required],
-      'zvuk': [this.vjezba.zvuk, Validators.required],
+      'zvuk': [this.vjezba.zvuk],
       'snimci': this.napraviNizZaFormu()
     });
   }
@@ -53,6 +53,20 @@ export class VjezbaComponent implements OnInit, OnDestroy {
 
   potvrdaUnosa(forma: FormGroup) {
     this.potvrdjena = true;
+  }
+
+  ukloniSnimak(index: number): void {
+    this.kreatorVjezbeServis.ukloniSnimak(index);
+    let n = <FormArray>this.vjezbaObrazac.controls['snimci'];
+    n.removeAt(index);
+  }
+
+  dodajPoljeSnimka() {
+    if (!this.vjezba.snimci || this.vjezba.snimci.length <= 4) {
+      this.kreatorVjezbeServis.dodajPrazanSnimak();
+      let n = <FormArray>this.vjezbaObrazac.controls['snimci'];
+      n.push(new FormControl('', Validators.required));
+    }
   }
 
   ngOnDestroy() {
