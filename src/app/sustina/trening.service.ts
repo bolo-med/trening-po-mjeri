@@ -21,10 +21,10 @@ export class TreningService {
     return this.treninzi;
   }
 
-  dajTrening(naziv: string): Trening {
+  dajTrening(id: string): Trening {
     for (const trening of this.treninzi) {
-      if (trening.nazivID === naziv) {
-        return trening;
+      if (trening.nazivID === id) {
+        return this.noveRefTrening(trening);
       }
     }
     return null;
@@ -49,7 +49,7 @@ export class TreningService {
         'sklekovi',
         'Sklekovi',
         'Vjezba za gornji dio tijela. Najvise pogadja pektoralis i triceps.',
-        45,
+        30,
         'sklekovi.jpg',
         '',
         ['bfBts05uD7c', 'dCqqJg-zxQw']
@@ -61,7 +61,7 @@ export class TreningService {
         'trbusnjaci',
         'Trbušnjaci',
         'Vjezba za misice abdomena. Najvise pogadja gornji dio abdomena.',
-        60,
+        30,
         'trbusnjaci.png',
         '',
         []
@@ -73,7 +73,7 @@ export class TreningService {
         'cucnjevi',
         'Čučnjevi',
         'Vjezba za misice nogu. Najvise pogadja kvadriceps.',
-        75,
+        30,
         'cucnjevi.png',
         '',
         []
@@ -95,8 +95,8 @@ export class TreningService {
     this.treninzi.push(
       new Trening(
         'tr02',
-        'proba 02 aaaaaaaaa',
-        32,
+        'Trominutni trening',
+        45,
         this.noveReference(this.vjezbe),
         'neki opis'
       )
@@ -105,8 +105,8 @@ export class TreningService {
     this.treninzi.push(
       new Trening(
         'tr03',
-        'proba 03',
-        50,
+        '3 i po minutni trening',
+        60,
         this.noveReference(this.vjezbe),
         'neki opis'
       )
@@ -123,12 +123,23 @@ export class TreningService {
         vjezbaOrig.trajanje,
         vjezbaOrig.slika
       );
-      //if (vjezbaOrig.zvuk) vjezbaNova.zvuk = vjezbaOrig.zvuk;
-      //if (vjezbaOrig.snimci) vjezbaNova.snimci = vjezbaOrig.snimci.slice();
+      if (vjezbaOrig.zvuk) vjezbaNova.zvuk = vjezbaOrig.zvuk;
+      if (vjezbaOrig.snimci) vjezbaNova.snimci = vjezbaOrig.snimci.slice();
       vjezbe.push(vjezbaNova);
     }
 
     return vjezbe;
+  }
+
+  noveRefTrening(t: Trening): Trening {
+    let vje: Vjezba[] = [];
+    let nrt: Trening = new Trening('', '', 0, vje, '');
+    nrt.nazivID = t.nazivID;
+    nrt.naslov = t.naslov;
+    nrt.trajanjeOdmora = t.trajanjeOdmora;
+    nrt.vjezbe = this.noveReference(t.vjezbe);
+    if (t.opis) nrt.opis = t.opis;
+    return nrt;
   }
 
   dodajTrening(trening: Trening): Trening {
@@ -143,6 +154,19 @@ export class TreningService {
     for (let i = 0; i < this.treninzi.length; i++) {
       if (this.treninzi[i].nazivID === trening.nazivID) {
         this.treninzi[i] = trening;
+        break;
+      }
+    }
+  }
+
+  dodajVjezbu(vjezba: Vjezba) {
+    this.vjezbe.push(vjezba);
+  }
+
+  azurirajVjezbu(vjezba: Vjezba) {
+    for (let i = 0; i < this.vjezbe.length; i++) {
+      if (this.vjezbe[i].nazivID === vjezba.nazivID) {
+        this.vjezbe[i] = vjezba;
         break;
       }
     }

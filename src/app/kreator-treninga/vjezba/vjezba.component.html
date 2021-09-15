@@ -5,84 +5,99 @@
             <br><br>
         </div>
     </div>
-</div>
-
-
-<form class="row" [formGroup]="vjezbaObrazac" (ngSubmit)='potvrdaUnosa(vjezbaObrazac)'>
-    <div class="col-lg-7">
-        <div class="form-group">
-            <label for="nazivID">ID vježbe</label>
-            <input id="nazivID" class="form-control" name="nazivID" formControlName="nazivID" placeholder="mora biti jedinstven...">
-            <div class="alert alert-danger" role="alert" *ngIf="vjezbaObrazac.controls['nazivID'].hasError('required') && 
-                                                                (vjezbaObrazac.controls['nazivID'].touched || potvrdjena)">
-                Polje "ID" je obavezno!
+    <form class="row" [formGroup]="vjezbaObrazac" (ngSubmit)='potvrdaUnosa(vjezbaObrazac)'>
+        <div class="col-lg-7">
+            <div class="form-group">
+                <label for="nazivID">ID vježbe</label>
+                <input id="nazivID" class="form-control" formControlName="nazivID" placeholder="mora biti jedinstven...">
+                <div class="alert alert-danger" role="alert" *ngIf="vjezbaObrazac.controls['nazivID'].hasError('required') && 
+                                                                    (vjezbaObrazac.controls['nazivID'].touched || potvrdjena)">
+                    Polje "ID" je obavezno!
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="vjezbaObrazac.controls['nazivID'].hasError('nepravilanId') && 
+                                                                    (vjezbaObrazac.controls['nazivID'].touched || potvrdjena) && 
+                                                                    vjezbaObrazac.controls['nazivID'].value">
+                    Samo slova i brojevi!
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="naslov">Naslov vježbe</label>
+                <input id="naslov" class="form-control" formControlName="naslov" placeholder="naslov vježbe...">
+                <div class="alert alert-danger" role="alert" *ngIf="vjezbaObrazac.controls['naslov'].hasError('required') && 
+                                                                    (vjezbaObrazac.controls['naslov'].touched || potvrdjena)">
+                    Polje "naslov" je obavezno!
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="opis">Opis vježbe</label>
+                <textarea id="opis" class="form-control" formControlName="opis" placeholder="opis vježbe..."></textarea>
+                <div class="alert alert-danger" role="alert" *ngIf="vjezbaObrazac.controls['opis'].hasError('required') && 
+                                                                    (vjezbaObrazac.controls['opis'].touched || potvrdjena)">
+                    Polje "opis" je obavezno!
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="trajanje">Trajanje vježbe</label>
+                <select class="form-control" formControlName="trajanje">
+                    <option *ngFor="let trajanje of trajanja" [ngValue]="trajanje.iznos">{{trajanje.slovima}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="zvuk">Zvuk vježbe</label>
+                <input type="text" id="zvuk" class="form-control" formControlName="zvuk" placeholder="audio fajl iz assets...">
             </div>
         </div>
-        <div class="form-group">
-            <label for="naslov">Naslov</label>
-            <input id="naslov" class="form-control" name="naslov" formControlName="naslov" placeholder="naslov vježbe...">
-            <div class="alert alert-danger" role="alert" *ngIf="vjezbaObrazac.controls['naslov'].hasError('required') && 
-                                                                (vjezbaObrazac.controls['naslov'].touched || potvrdjena)">
-                Polje "naslov" je obavezno!
+        <div class="col-lg-5">
+            <div class="form-group">
+                <img [src]="(vjezbaObrazac.controls['slika'].value && !pogresnaPutanja) ? 'assets/slike/' + vjezbaObrazac.controls['slika'].value : 
+                                                                                        'assets/slike/nema.png'" alt='Nema slike.' 
+                                                                                        (error)="nepostojecaPutanja()">
+                <br><br>
+                <label>Slika</label>
+                <input type="text" class="form-control" formControlName="slika" 
+                                                        placeholder="fajl iz assets (npr: zgibovi.jpg)..." (ngModelChange)="izmjena()">
+                <div class="alert alert-danger" role="alert" *ngIf="vjezbaObrazac.controls['slika'].hasError('required') && 
+                                                                    (vjezbaObrazac.controls['slika'].touched || potvrdjena)">
+                    Polje "slika" je obavezno!
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="opis">Opis</label>
-            <!-- ne mora name="opis" -->
-            <textarea id="opis" class="form-control" formControlName="opis" placeholder="opis vježbe..."></textarea>
-            <div class="alert alert-danger" role="alert" *ngIf="vjezbaObrazac.controls['opis'].hasError('required') && 
-                                                                (vjezbaObrazac.controls['opis'].touched || potvrdjena)">
-                Polje "opis" je obavezno!
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="trajanje">Trajanje (u sekundama)</label>
-            <input type="number" id="trajanje" class="form-control" formControlName="trajanje" min="0" max="180" step="10">
-        </div>
-        <div class="form-group">
-            <label for="zvuk">Zvuk</label>
-            <input type="text" id="zvuk" class="form-control" formControlName="zvuk" placeholder="audio fajl iz assets...">
-        </div>
-    </div>
-    <div class="col-lg-5">
-        <div class="form-group">
-            <img [src]="vjezbaObrazac.controls['slika'].value ? 'assets/slike/' + vjezbaObrazac.controls['slika'].value : 
-                                                                'assets/slike/nema.png'">
-            <br><br>
-            <label>Slika</label>
-            <input type="text" class="form-control" formControlName="slika" placeholder="fajl iz assets...">
-            <div class="alert alert-danger" role="alert" *ngIf="vjezbaObrazac.controls['slika'].hasError('required') && 
-                                                                (vjezbaObrazac.controls['slika'].touched || potvrdjena)">
-                Polje slika je obavezno!
-            </div>
-        </div>
-        <br>
-        <div class="form-group" formArrayName="snimci">
-            <label>
-                Snimci sa YT-a <br>
-                <small>(Unesite samo dio nakon: https://www.youtube.com/embed/)</small>
-            </label>
-            <div *ngFor="let snimak of nizZaFormu.controls; let i = index" class="form-row mb-2">
-                <div class="col-10">
-                    <input type="text" class="form-control" [formControlName]="i">
-                    <div class="alert alert-danger" role="alert" *ngIf="nizZaFormu.controls[i].hasError('required') && 
-                                                                (nizZaFormu.controls[i].touched || potvrdjena)">
-                        Polje za video je obavezno!
+            <br>
+            <div class="form-group" formArrayName="snimci">
+                <label *ngIf="vjezba.snimci.length > 0">
+                    Snimci sa YT-a <br>
+                    <small>(Unesite samo dio nakon: https://www.youtube.com/embed/)</small>
+                </label>
+                <div *ngFor="let snimak of nizKontrola.controls; let i = index" class="form-row mb-2">
+                    <div class="col-10">
+                        <input type="text" class="form-control" [formControlName]="i">
+                        <div class="alert alert-danger" role="alert" 
+                                                        *ngIf="vjezbaObrazac.controls['snimci'].controls[i].hasError('required') && 
+                                                            (vjezbaObrazac.controls['snimci'].controls[i].touched || potvrdjena)">
+                            Polje za video je obavezno!
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <button type="button" class="btn btn-danger" (click)="ukloniSnimak(i)">Ukloni</button>
                     </div>
                 </div>
-                <div class="col-2">
-                    <button type="button" class="btn btn-danger" (click)="ukloniSnimak(i)">Ukloni</button>
-                </div>
             </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-warning" (click)="dodajPoljeSnimka()" 
+                                                            [disabled]="(vjezba.snimci && (vjezba.snimci.length >= 5)) ? true : false">
+                    Dodaj polje za snimak
+                </button>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-info">Potvrdi unos</button>
+            <br><br>
         </div>
-        <div class="form-group">
-            <button type="button" class="btn btn-warning" (click)="dodajPoljeSnimka()" 
-                                                          [disabled]="(vjezba.snimci && (vjezba.snimci.length >= 5)) ? true : false">
-                Dodaj polje za snimak
-            </button>
+    </form>
+    <div class="row b">
+        <div class="col">
+            <br>
+            <div *ngIf="vjezba.snimci && (vjezba.snimci.length != 0)" class="naslov display-4"> Pregled snimaka </div>
+            <br><br>
+            <app-video-plejer [snimci]='vjezba.snimci'></app-video-plejer>
         </div>
-        <br>
-        <button type="submit" class="btn btn-info">Potvrdi unos</button>
-        <br><br>
     </div>
-</form>
+</div>

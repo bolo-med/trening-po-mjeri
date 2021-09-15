@@ -60,7 +60,7 @@
                 </div>
                 <div class="col-lg-7 pl-5">
                   <div class="form-group row">
-                    <label for="fNazivID">ID:</label>
+                    <label for="fNazivID">ID treninga:</label>
                     <input type="text" name="nazivID" #vNazivID="ngModel" id="fNazivID" class="form-control" placeholder="mora biti jedinstven" 
                                        [(ngModel)]="trening.nazivID" required>
                     <label class="greska" *ngIf="vNazivID.control.hasError('required') && (vNazivID.touched || potvrdio)">
@@ -68,19 +68,19 @@
                     </label>
                   </div>
                   <div class="form-group row">
-                    <label for="fNaslov">Naslov:</label>
+                    <label for="fNaslov">Naslov treninga:</label>
                     <input type="text" name="naslov" #vNaslov="ngModel" id="fNaslov" class="form-control" placeholder="unesite naslov treninga" 
-                                       [(ngModel)]="trening.naslov" required minlength="5" maxlength="20">
+                                       [(ngModel)]="trening.naslov" required minlength="5" maxlength="25">
                     <div class="sirina" *ngIf="(vNaslov.touched || potvrdio)">
                       <label class="greska" *ngIf="(vNaslov.control.hasError('minlength') || vNaslov.control.hasError('maxlength')) && 
                                                   (trening.naslov.length > 0)">
-                        Naslov mora imati izmedju 5 i 20 karaktera.
+                        Naslov mora imati izmedju 5 i 25 karaktera.
                       </label>
                       <label class="greska" *ngIf="vNaslov.control.hasError('required')">Polje, naslov, je obavezno.</label>
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="fOpis">Opis:</label>
+                    <label for="fOpis">Opis treninga:</label>
                     <textarea type="text" name="opis" id="fOpis" class="form-control" placeholder="opis treninga (opciono)..." 
                                           [(ngModel)]="trening.opis"></textarea>
                   </div>
@@ -91,7 +91,7 @@
                   </div>
                   <br>
                   <div class="row">
-                    <p>Ukupan broj vježbi: {{trening.vjezbe?.length}}</p>
+                    <p>Ukupan broj vježbi u okviru treninga: {{trening.vjezbe?.length}}</p>
                   </div>
                   <div class="row">
                     <p>Trajanje treninga: {{ (trening.vjezbe.length > 0) ? (trening.trajanjeTreninga() | formatiranjeSekundi) : 0 }}</p>

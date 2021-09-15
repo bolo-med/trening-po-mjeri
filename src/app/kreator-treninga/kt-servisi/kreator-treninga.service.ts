@@ -14,9 +14,9 @@ export class KreatorTreningaService {
 
   constructor(private treningServis: TreningService) {}
 
-  zapocniKonstruisanje(naziv: string): Trening {
-    if (naziv) {
-      this.predmetniTrening = this.treningServis.dajTrening(naziv);
+  zapocniKonstruisanje(id: string): Trening {
+    if (id) {
+      this.predmetniTrening = this.treningServis.dajTrening(id);
       this.noviTrening = false;
     }
     else {

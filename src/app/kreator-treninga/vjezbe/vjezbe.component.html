@@ -3,7 +3,7 @@
         <app-vertikalni></app-vertikalni>
       </div>
       <div class="col-lg-9">
-        <div class="display-4 naslov">Sve vjezbe</div>
+        <div class="display-4 naslov">Sve vježbe</div>
         <br><br>
 
         <div class="container-fluid">
@@ -15,11 +15,12 @@
                                 <h4 class="card-title">{{ vjezba.naslov }}</h4>
                                 <br>
                                 <p class="card-text">
-                                    Opis vjezbe: {{ vjezba.opis }}
+                                    <strong>Opis vježbe:</strong> {{ vjezba.opis }}
                                   </p>
                                 <p class="card-text">
-                                  Trajanje vjezbe: {{ vjezba.trajanje }}
+                                  <strong>Trajanje vježbe:</strong> {{ vjezba.trajanje }}
                                 </p>
+                                <img class="card-img" [src]="vjezba.slika ? 'assets/slike/' + vjezba.slika : 'assets/slike.nema.png'">
                               </div>
                         </div>
                         <br>
@@ -31,11 +32,13 @@
                                 <h4 class="card-title">{{ spisakVjezbi[i+1].naslov }}</h4>
                                 <br>
                                 <p class="card-text">
-                                    Opis vjezbe: {{ spisakVjezbi[i+1].opis }}
+                                    <strong>Opis vježbe:</strong> {{ spisakVjezbi[i+1].opis }}
                                 </p>
                                 <p class="card-text">
-                                  Trajanje vjezbe: {{ spisakVjezbi[i+1].trajanje }}
+                                  <strong>Trajanje vježbe:</strong> {{ spisakVjezbi[i+1].trajanje }}
                                 </p>
+                                <img class="card-img" [src]="spisakVjezbi[i+1].slika ? 'assets/slike/' + spisakVjezbi[i+1].slika : 
+                                                                                     'assete/slike/nema.png'">
                               </div>
                         </div>
                         <br>

@@ -18,7 +18,7 @@ export class KreatorVjezbeService {
       this.novaVjezba = false;
     }
     else {
-      this.predmetnaVjezba = new Vjezba('', '', '', 0, '');
+      this.predmetnaVjezba = new Vjezba('', '', '', 15, '', '', []);
       this.novaVjezba = true;
     }
     return this.predmetnaVjezba;
@@ -35,6 +35,16 @@ export class KreatorVjezbeService {
       this.predmetnaVjezba.snimci = [];
     }
     this.predmetnaVjezba.snimci.push('');
+  }
+
+  sacuvaj(vjezba: Vjezba) {
+    if (this.novaVjezba) {
+      this.treningServis.dodajVjezbu(vjezba);
+    }
+    else {
+      this.treningServis.azurirajVjezbu(vjezba);
+    }
+    this.novaVjezba = false;
   }
 
 

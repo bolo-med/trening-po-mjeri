@@ -15,13 +15,13 @@
                                 <h4 class="card-title">{{ trening.naslov }}</h4>
                                 <br>
                                 <p class="card-text">
-                                    Opis: {{ trening.opis }}
+                                    <strong>Opis treninga:</strong> {{ trening.opis }}
                                 </p>
                                 <p class="card-text">
-                                  Trajanje treninga: {{ (trening.trajanjeTreninga() ? trening.trajanjeTreninga() : 0) | formatiranjeSekundi }}
+                                  <strong>Trajanje treninga:</strong> {{ (trening.trajanjeTreninga() ? trening.trajanjeTreninga() : 0) | formatiranjeSekundi }}
                                 </p>
                                 <p class="card-text">
-                                  Broj vjezbi: {{ trening.vjezbe.length }}
+                                  <strong>Broj vježbi:</strong> {{ trening.vjezbe.length }}
                                 </p>
                               </div>
                         </div>
@@ -34,14 +34,14 @@
                                 <h4 class="card-title">{{ spisakTreninga[i+1].naslov }}</h4>
                                 <br>
                                 <p class="card-text">
-                                    Opis: {{ spisakTreninga[i+1].opis }}
+                                    <strong>Opis treninga:</strong> {{ spisakTreninga[i+1].opis }}
                                 </p>
                                 <p class="card-text">
-                                  Trajanje treninga: {{ (spisakTreninga[i+1].trajanjeTreninga() ? 
+                                  <strong>Trajanje treninga:</strong> {{ (spisakTreninga[i+1].trajanjeTreninga() ? 
                                                             spisakTreninga[i+1].trajanjeTreninga() : 0) | formatiranjeSekundi }}
                                 </p>
                                 <p class="card-text">
-                                  Broj vjezbi: {{ spisakTreninga[i+1].vjezbe.length }}
+                                  <strong>Broj vježbi:</strong> {{ spisakTreninga[i+1].vjezbe.length }}
                                 </p>
                               </div>
                         </div>
