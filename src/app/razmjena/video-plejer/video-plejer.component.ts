@@ -18,9 +18,12 @@ export class VideoPlejerComponent implements OnInit, OnChanges {
   ngOnInit(): void { }
 
   ngOnChanges() {
+    console.log('aaa');//////////////////////////////////////////////////////////////////
+    
     if (this.snimci) {
+      this.urls = [];
       for (let s of this.snimci) {
-        this.urls.push(this.domSanitizer.bypassSecurityTrustResourceUrl(this.prefiks + s));
+        if (s) this.urls.push(this.domSanitizer.bypassSecurityTrustResourceUrl(this.prefiks + s + '?mute=1'));
       }
     }
     else {

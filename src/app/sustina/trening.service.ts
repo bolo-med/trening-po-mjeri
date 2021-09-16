@@ -64,7 +64,7 @@ export class TreningService {
         30,
         'trbusnjaci.png',
         '',
-        []
+        ['u5kontm7ix8']
       )
     );
 
@@ -76,7 +76,7 @@ export class TreningService {
         30,
         'cucnjevi.png',
         '',
-        []
+        ['WU_ks_hJ7nY', 'E374izHLDL4', 'mGvzVjuY8SY']
       )
     );
   }
@@ -170,6 +170,15 @@ export class TreningService {
         break;
       }
     }
+  }
+
+  uvrstenaUTrening(idVjezbe: string): boolean {
+    for (let t of this.treninzi) {
+      for (let v of t.vjezbe) {
+        if (v.nazivID === idVjezbe) return true;
+      }
+    }
+    return false;
   }
 
 }

@@ -55,7 +55,8 @@
                 <br><br>
                 <label>Slika</label>
                 <input type="text" class="form-control" formControlName="slika" 
-                                                        placeholder="fajl iz assets (npr: zgibovi.jpg)..." (ngModelChange)="izmjena()">
+                                                        placeholder="fajl iz assets (npr: zgibovi.jpg ili propadanja.png)" 
+                                                        (ngModelChange)="izmjena()">
                 <div class="alert alert-danger" role="alert" *ngIf="vjezbaObrazac.controls['slika'].hasError('required') && 
                                                                     (vjezbaObrazac.controls['slika'].touched || potvrdjena)">
                     Polje "slika" je obavezno!
@@ -63,9 +64,10 @@
             </div>
             <br>
             <div class="form-group" formArrayName="snimci">
-                <label *ngIf="vjezba.snimci.length > 0">
-                    Snimci sa YT-a <br>
-                    <small>(Unesite samo dio nakon: https://www.youtube.com/embed/)</small>
+                <label *ngIf="vjezbaObrazac.controls['snimci'].value.length > 0">
+                    Snimci sa YouTube-a <br>
+                    <small>(Unesite samo dio nakon: https://www.youtube.com/embed/)</small><br>
+                    <small>(npr: fZDMrxdtLSw ili DNoSbXPZn6A)</small>
                 </label>
                 <div *ngFor="let snimak of nizKontrola.controls; let i = index" class="form-row mb-2">
                     <div class="col-10">
@@ -83,21 +85,27 @@
             </div>
             <div class="form-group">
                 <button type="button" class="btn btn-warning" (click)="dodajPoljeSnimka()" 
-                                                            [disabled]="(vjezba.snimci && (vjezba.snimci.length >= 5)) ? true : false">
+                        [disabled]="(vjezbaObrazac.controls['snimci'].value && 
+                                    (vjezbaObrazac.controls['snimci'].value.length >= 5)) ? true : false">
                     Dodaj polje za snimak
                 </button>
             </div>
             <br>
-            <button type="submit" class="btn btn-info">Potvrdi unos</button>
+            <button type="submit" class="btn btn-info">Sačuvaj</button>
+            <br><br>
+            <button *ngIf="!nova" type="button" class="btn btn-danger" 
+                    [disabled]="uvrstena">Ukloni vježbu</button>
+            <br>
+            <small *ngIf="uvrstena">(Uklonite vježbu iz svih treninga, da biste aktivirali dugme.)</small>
             <br><br>
         </div>
     </form>
-    <div class="row b">
+    <div class="row">
         <div class="col">
             <br>
             <div *ngIf="vjezba.snimci && (vjezba.snimci.length != 0)" class="naslov display-4"> Pregled snimaka </div>
             <br><br>
-            <app-video-plejer [snimci]='vjezba.snimci'></app-video-plejer>
+            <app-video-plejer [snimci]="vjezbaObrazac.controls['snimci'].value"></app-video-plejer>
         </div>
     </div>
 </div>

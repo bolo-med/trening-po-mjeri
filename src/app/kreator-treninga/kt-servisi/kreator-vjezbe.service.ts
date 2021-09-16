@@ -24,18 +24,18 @@ export class KreatorVjezbeService {
     return this.predmetnaVjezba;
   }
 
-  ukloniSnimak(indeks: number): void {
-    if (indeks >= 0) {
-      this.predmetnaVjezba.snimci.splice(indeks, 1)
-    };
-  }
+  // ukloniSnimak(indeks: number): void {
+  //   if (indeks >= 0) {
+  //     this.predmetnaVjezba.snimci.splice(indeks, 1)
+  //   };
+  // }
 
-  dodajPrazanSnimak() {
-    if (!this.predmetnaVjezba.snimci) {
-      this.predmetnaVjezba.snimci = [];
-    }
-    this.predmetnaVjezba.snimci.push('');
-  }
+  // dodajPrazanSnimak() {
+  //   if (!this.predmetnaVjezba.snimci) {
+  //     this.predmetnaVjezba.snimci = [];
+  //   }
+  //   this.predmetnaVjezba.snimci.push('');
+  // }
 
   sacuvaj(vjezba: Vjezba) {
     if (this.novaVjezba) {
@@ -47,5 +47,8 @@ export class KreatorVjezbeService {
     this.novaVjezba = false;
   }
 
+  uvrstena(id: string): boolean {
+    return this.treningServis.uvrstenaUTrening(id);
+  }
 
 }

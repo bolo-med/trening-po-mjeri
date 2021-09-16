@@ -18,6 +18,8 @@ export class VjezbaComponent implements OnInit, OnDestroy {
   nizKontrola: FormArray = new FormArray([]);
   potvrdjena: boolean = false;
   pogresnaPutanja: boolean = false;
+  nova: boolean;
+  uvrstena: boolean;
 
   trajanja = [
     { slovima: '15 sekundi', iznos: 15 },
@@ -39,8 +41,19 @@ export class VjezbaComponent implements OnInit, OnDestroy {
     this.sub = this.route.data.subscribe((data: {vjezba: Vjezba}) => {
       this.vjezba = data.vjezba;
     });
-
+    this.jeLiNova(this.vjezba.nazivID);
     this.napraviObrazac();
+  }
+
+  jeLiNova(id: string) {
+    if (id === '') {
+      this.nova = true;
+      this.uvrstena = false;
+    }
+    else {
+      this.nova = false;
+      this.uvrstena = this.kreatorVjezbeServis.uvrstena(id);
+    }
   }
 
   napraviObrazac() {
@@ -69,14 +82,22 @@ export class VjezbaComponent implements OnInit, OnDestroy {
   }
 
   ukloniSnimak(index: number): void {
-    this.kreatorVjezbeServis.ukloniSnimak(index);
+    //this.kreatorVjezbeServis.ukloniSnimak(index); //Visak???////////////////////////////////////////////////////////////////////////////////
     let n = <FormArray>this.vjezbaObrazac.controls['snimci'];
     n.removeAt(index);
   }
 
+  // dodajPoljeSnimka() {
+  //   if (this.vjezba.snimci.length <= 4) {
+  //     this.kreatorVjezbeServis.dodajPrazanSnimak();
+  //     let n = <FormArray>this.vjezbaObrazac.controls['snimci'];
+  //     n.push(new FormControl('', Validators.required));
+  //   }
+  // }
+
   dodajPoljeSnimka() {
-    if (this.vjezba.snimci.length <= 4) {
-      this.kreatorVjezbeServis.dodajPrazanSnimak();
+    if (this.nizKontrola.controls.length <= 4) {
+      //this.kreatorVjezbeServis.dodajPrazanSnimak();
       let n = <FormArray>this.vjezbaObrazac.controls['snimci'];
       n.push(new FormControl('', Validators.required));
     }
