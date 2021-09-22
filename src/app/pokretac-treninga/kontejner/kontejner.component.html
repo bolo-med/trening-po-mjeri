@@ -1,0 +1,9 @@
+<app-pkr-trening (treningPocetak)="zvuk.start()" 
+                 (treningKraj)="zvuk.stop()" 
+                 (vjezbaZaustavljena)="zvuk.stop()"
+                 (vjezbaNastavljena)="zvuk.start()" 
+                 (vjezbaTok)="zvuk.tokVjezbe($event)" 
+                 (vjezbaPromjena)="zvuk.promjenaVjezbe($event)"></app-pkr-trening>
+
+<app-zvuk #zvuk></app-zvuk>
+

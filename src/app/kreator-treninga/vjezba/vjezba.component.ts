@@ -58,10 +58,17 @@ export class VjezbaComponent implements OnInit, OnDestroy {
 
   napraviObrazac() {
     this.vjezbaObrazac = this.formBuilder.group({
+
       //'nazivID': [this.vjezba.nazivID, [Validators.required, IdValidator.nepravilanId]],
-      'nazivID': [this.vjezba.nazivID, {
+
+      // 'nazivID': [this.vjezba.nazivID, {
+      //   updateOn: 'blur',
+      //   validators: [Validators.required, IdValidator.nepravilanId],
+      // }],
+
+      'nazivID': [{value: this.vjezba.nazivID, disabled: (this.vjezba.nazivID !== '')}, {
         updateOn: 'blur',
-        validators: [Validators.required, IdValidator.nepravilanId]
+        validators: [Validators.required, IdValidator.nepravilanId],
       }],
       'naslov': [this.vjezba.naslov, Validators.required],
       'opis': [this.vjezba.opis, Validators.required],
@@ -82,7 +89,7 @@ export class VjezbaComponent implements OnInit, OnDestroy {
   }
 
   ukloniSnimak(index: number): void {
-    //this.kreatorVjezbeServis.ukloniSnimak(index); //Visak???////////////////////////////////////////////////////////////////////////////////
+    //this.kreatorVjezbeServis.ukloniSnimak(index);
     let n = <FormArray>this.vjezbaObrazac.controls['snimci'];
     n.removeAt(index);
   }
@@ -129,6 +136,11 @@ export class VjezbaComponent implements OnInit, OnDestroy {
 
   izmjena() {
     this.pogresnaPutanja = false;
+  }
+
+  ukloniVjezbu() {
+    this.kreatorVjezbeServis.ukloniVjezbu();
+    this.router.navigate(['/kreator/vjezbe']);
   }
 
   ngOnDestroy() {

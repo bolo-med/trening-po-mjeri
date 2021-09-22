@@ -1,0 +1,57 @@
+<div class="pt-70-px"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="card">
+                <div class="card-header">Opis vježbe</div>
+                <div class="card-body">
+                    <div class="card-text">{{trenutnaVjezba.opis}}</div>
+                </div>
+            </div>
+            <br><br>
+        </div>
+        <div class="col-lg-6" (window:keyup)="taster($event)">
+            <p class="preostalo">Do kraja treninga: {{preostaloVrijemeTreninga | formatiranjeSekundi}}</p>
+            <p class="naslovV">{{trenutnaVjezba.naslov}}</p>
+            <img class="img-fluid col-sm" alt='nema slike' [src]="'assets/slike/' + trenutnaVjezba.slika">
+            <br>
+
+            <div class="progress" style="height: 30px;">
+                <div class="progress-bar bg-warning" 
+                     role="progressbar" 
+                     [ngStyle]="{'width': (protekloVrijemeVjezbe/trenutnaVjezba.trajanje)*100 + '%'}" 
+                     [attr.aria-valuenow]="protekloVrijemeVjezbe" 
+                     aria-valuemin="0" 
+                     [attr.aria-valuemax]="trenutnaVjezba.trajanje">
+                </div>
+            </div>
+
+            <p class="preostalo">Do kraja {{trenutnaVjezba.nazivID == odmor.nazivID ? 'odmora' : 'vježbe'}}: 
+                {{(trenutnaVjezba.trajanje - protekloVrijemeVjezbe) | formatiranjeSekundi}}
+            </p>
+            <p class="preostalo" *ngIf="trenutnaVjezba.nazivID == odmor.nazivID">
+                Sledeća vježba: {{trening.vjezbe[indeksTrenutneVjezbe + 1].naslov}}
+            </p>
+            <p class="preostalo" [ngStyle]="{'color': 'white'}" *ngIf="trenutnaVjezba.nazivID !== odmor.nazivID">-</p>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-3"></div>
+                    <div class="col-6">
+                        <button type="button" class="btn btn-block" (click)="zaustaviNastavi()" 
+                                              [ngClass]="treningZaustavljen ? 'btn-success' : 'btn-danger'">
+                            {{ treningZaustavljen ? 'Nastavi (taster P)' : 'Zaustavi (taster P)' }}
+                        </button>
+                        <br><br>
+                    </div>
+                    <div class="col-3"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <app-video-plejer [snimci]="trenutnaVjezba.snimci" [komponenta]="'pkr-trening'"></app-video-plejer>
+        </div>
+    </div>
+</div>
+

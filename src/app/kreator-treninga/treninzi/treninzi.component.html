@@ -18,7 +18,8 @@
                                     <strong>Opis treninga:</strong> {{ trening.opis }}
                                 </p>
                                 <p class="card-text">
-                                  <strong>Trajanje treninga:</strong> {{ (trening.trajanjeTreninga() ? trening.trajanjeTreninga() : 0) | formatiranjeSekundi }}
+                                  <strong>Trajanje treninga:</strong> {{ (trening.trajanjeTreninga() ? 
+                                                                          trening.trajanjeTreninga() : 0) | formatiranjeSekundi }}
                                 </p>
                                 <p class="card-text">
                                   <strong>Broj vježbi:</strong> {{ trening.vjezbe.length }}

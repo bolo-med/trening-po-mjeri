@@ -51,4 +51,8 @@ export class KreatorVjezbeService {
     return this.treningServis.uvrstenaUTrening(id);
   }
 
+  ukloniVjezbu() {
+    this.treningServis.ukloniVjezbu(this.predmetnaVjezba.nazivID);
+  }
+
 }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { NodeCompatibleEventEmitter } from 'rxjs/internal/observable/fromEvent';
 
 import { Trening } from './Trening';
 import { Vjezba } from './Vjezba';
@@ -48,10 +49,10 @@ export class TreningService {
       new Vjezba(
         'sklekovi',
         'Sklekovi',
-        'Vjezba za gornji dio tijela. Najvise pogadja pektoralis i triceps.',
+        'Vježba za gornji dio tijela. Najviše pogađa pektoralis i triceps.',
         30,
         'sklekovi.jpg',
-        '',
+        'sklekovi.mp3',
         ['bfBts05uD7c', 'dCqqJg-zxQw']
       )
     );
@@ -60,10 +61,10 @@ export class TreningService {
       new Vjezba(
         'trbusnjaci',
         'Trbušnjaci',
-        'Vjezba za misice abdomena. Najvise pogadja gornji dio abdomena.',
+        'Vježba za mišiće abdomena. Najviše pogađa gornji dio abdomena.',
         30,
         'trbusnjaci.png',
-        '',
+        'trbusnjaci.mp3',
         ['u5kontm7ix8']
       )
     );
@@ -72,10 +73,10 @@ export class TreningService {
       new Vjezba(
         'cucnjevi',
         'Čučnjevi',
-        'Vjezba za misice nogu. Najvise pogadja kvadriceps.',
+        'Vježba za mišiće nogu. Najviše pogađa kvadriceps.',
         30,
         'cucnjevi.png',
-        '',
+        'cucnjevi.mp3',
         ['WU_ks_hJ7nY', 'E374izHLDL4', 'mGvzVjuY8SY']
       )
     );
@@ -179,6 +180,16 @@ export class TreningService {
       }
     }
     return false;
+  }
+
+  ukloniVjezbu(id: string): void {
+    for (let v of this.vjezbe) {
+      if (v.nazivID === id) {
+        const index: number = this.vjezbe.indexOf(v);
+        this.vjezbe.splice(index, 1);
+        return;
+      }
+    }
   }
 
 }

@@ -1,0 +1,53 @@
+<div class="pt-70-px"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="display-4 naslov">Izaberite trening po želji</div>
+            <br><br>
+        </div>
+    </div>
+    <div *ngFor="let trening of treninzi; let i = index">
+        <div class="row" *ngIf="i%2 == 0">
+            <div class="col-lg-6">
+                <div class="card border-info">
+                    <div class="card-body pokazivac okvir" (click)="izabran(trening)">
+                        <h4 class="card-title">{{ trening.naslov }}</h4>
+                        <br>
+                        <p class="card-text">
+                            <strong>Opis treninga:</strong> {{ trening.opis }}
+                        </p>
+                        <p class="card-text">
+                          <strong>Trajanje treninga:</strong> {{ (trening.trajanjeTreninga() ? 
+                                                                  trening.trajanjeTreninga() : 0) | formatiranjeSekundi }}
+                        </p>
+                        <p class="card-text">
+                          <strong>Broj vježbi:</strong> {{ trening.vjezbe.length }}
+                        </p>
+                      </div>
+                </div>
+                <br>
+            </div>
+            <div class="col-lg-6" *ngIf="treninzi[i+1]">
+                <div class="card border-info">
+                    <div class="card-body pokazivac okvir" (click)="izabran(treninzi[i+1])">
+                        <h4 class="card-title">{{ treninzi[i+1].naslov }}</h4>
+                        <br>
+                        <p class="card-text">
+                            <strong>Opis treninga:</strong> {{ treninzi[i+1].opis }}
+                        </p>
+                        <p class="card-text">
+                          <strong>Trajanje treninga:</strong> {{ (treninzi[i+1].trajanjeTreninga() ? 
+                                                                  treninzi[i+1].trajanjeTreninga() : 0) | formatiranjeSekundi }}
+                        </p>
+                        <p class="card-text">
+                          <strong>Broj vježbi:</strong> {{ treninzi[i+1].vjezbe.length }}
+                        </p>
+                      </div>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+

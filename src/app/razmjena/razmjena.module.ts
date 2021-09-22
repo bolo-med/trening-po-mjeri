@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormatiranjeSekundiPipe } from './formatiranje-sekundi.pipe';
 import { PoredjajPoPipe } from './poredjaj-po.pipe';
 import { VideoPlejerComponent } from './video-plejer/video-plejer.component';
+import { ZvucnaSignalizacijaDirective } from './zvucna-signalizacija.directive';
 
 
 
@@ -10,7 +11,8 @@ import { VideoPlejerComponent } from './video-plejer/video-plejer.component';
   declarations: [
     FormatiranjeSekundiPipe,
     PoredjajPoPipe,
-    VideoPlejerComponent
+    VideoPlejerComponent,
+    ZvucnaSignalizacijaDirective
   ],
   imports: [
     CommonModule
@@ -18,7 +20,8 @@ import { VideoPlejerComponent } from './video-plejer/video-plejer.component';
   exports: [
     FormatiranjeSekundiPipe,
     PoredjajPoPipe,
-    VideoPlejerComponent
+    VideoPlejerComponent,
+    ZvucnaSignalizacijaDirective
   ]
 })
 export class RazmjenaModule { }

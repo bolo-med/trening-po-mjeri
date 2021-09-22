@@ -9,6 +9,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 export class VideoPlejerComponent implements OnInit, OnChanges {
 
   @Input() snimci: Array<string>;
+  @Input() komponenta: string;
 
   prefiks: string = 'https://www.youtube.com/embed/';
   urls: Array<SafeResourceUrl> = new Array<SafeResourceUrl>();
@@ -18,8 +19,6 @@ export class VideoPlejerComponent implements OnInit, OnChanges {
   ngOnInit(): void { }
 
   ngOnChanges() {
-    console.log('aaa');//////////////////////////////////////////////////////////////////
-    
     if (this.snimci) {
       this.urls = [];
       for (let s of this.snimci) {
@@ -32,3 +31,4 @@ export class VideoPlejerComponent implements OnInit, OnChanges {
   }
 
 }
+

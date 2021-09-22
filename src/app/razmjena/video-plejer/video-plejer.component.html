@@ -1,6 +1,19 @@
-<span *ngFor="let snimak of urls">
-    <iframe [src]="snimak" frameborder="0" allowfullscreen></iframe>
-</span>
+<div *ngIf="komponenta == 'vjezba'">
+    <span *ngFor="let snimak of urls">
+        <iframe [src]="snimak" frameborder="0" allowfullscreen></iframe>
+    </span>
+</div>
+
+<div *ngIf="komponenta == 'pkr-trening'">
+    <div class="card">
+        <div class="card-header">Snimci</div>
+        <div class="card-body">
+            <div *ngFor="let snimak of urls">
+                <iframe width="100%" [src]="snimak" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</div>
 
 <br><br>
 

@@ -43,7 +43,9 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="zvuk">Zvuk vježbe</label>
+                <label for="zvuk">Zvuk vježbe</label><br>
+                <small>(Fajl iz foldera assets/zvuk/nazivi)</small><br>
+                <small>(Npr: zgibovi.mp3 ili propadanja.mp3)</small>
                 <input type="text" id="zvuk" class="form-control" formControlName="zvuk" placeholder="audio fajl iz assets...">
             </div>
         </div>
@@ -52,10 +54,12 @@
                 <img [src]="(vjezbaObrazac.controls['slika'].value && !pogresnaPutanja) ? 'assets/slike/' + vjezbaObrazac.controls['slika'].value : 
                                                                                         'assets/slike/nema.png'" alt='Nema slike.' 
                                                                                         (error)="nepostojecaPutanja()">
-                <br><br>
-                <label>Slika</label>
+                <br><br><br>
+                <label>Slika vježbe</label><br>
+                <small>(Fajl iz foldera assets/slike)</small><br>
+                <small>(Npr: zgibovi.jpg ili propadanja.png)</small>
                 <input type="text" class="form-control" formControlName="slika" 
-                                                        placeholder="fajl iz assets (npr: zgibovi.jpg ili propadanja.png)" 
+                                                        placeholder="naziv fajla" 
                                                         (ngModelChange)="izmjena()">
                 <div class="alert alert-danger" role="alert" *ngIf="vjezbaObrazac.controls['slika'].hasError('required') && 
                                                                     (vjezbaObrazac.controls['slika'].touched || potvrdjena)">
@@ -94,7 +98,7 @@
             <button type="submit" class="btn btn-info">Sačuvaj</button>
             <br><br>
             <button *ngIf="!nova" type="button" class="btn btn-danger" 
-                    [disabled]="uvrstena">Ukloni vježbu</button>
+                    [disabled]="uvrstena" (click)="ukloniVjezbu()">Ukloni vježbu</button>
             <br>
             <small *ngIf="uvrstena">(Uklonite vježbu iz svih treninga, da biste aktivirali dugme.)</small>
             <br><br>
@@ -103,9 +107,10 @@
     <div class="row">
         <div class="col">
             <br>
-            <div *ngIf="vjezba.snimci && (vjezba.snimci.length != 0)" class="naslov display-4"> Pregled snimaka </div>
+            <div *ngIf="vjezbaObrazac.controls['snimci'].value[0] && (vjezbaObrazac.controls['snimci'].value.length > 0)" 
+                 class="naslov display-4"> Pregled snimaka </div>
             <br><br>
-            <app-video-plejer [snimci]="vjezbaObrazac.controls['snimci'].value"></app-video-plejer>
+            <app-video-plejer [snimci]="vjezbaObrazac.controls['snimci'].value" [komponenta]="'vjezba'"></app-video-plejer>
         </div>
     </div>
 </div>

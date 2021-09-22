@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { PocetnaComponent } from './pocetna/pocetna.component';
 import { RazmjenaModule } from './razmjena/razmjena.module';
+import { PokretacTreningaComponent } from './pokretac-treninga/pokretac-treninga.component';
+import { PokretacTreningaModule } from './pokretac-treninga/pokretac-treninga.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { RazmjenaModule } from './razmjena/razmjena.module';
     AppRoutingModule,
     // KreatorTreningaModule, // mora da se izbaci da bi radio lazy loading
     FormsModule,
-    RazmjenaModule
+    RazmjenaModule,
+    PokretacTreningaModule
   ],
   providers: [],
   bootstrap: [AppComponent]
