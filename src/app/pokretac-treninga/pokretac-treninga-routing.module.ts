@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PokretacTreningaComponent } from './pokretac-treninga.component';
 import { KontejnerComponent } from './kontejner/kontejner.component';
+import { KontejnerResolver } from './kontejner/kontejner.resolver';
 
 const routes: Routes = [
     {
@@ -14,7 +15,8 @@ const routes: Routes = [
     },
     {
         path: ':id',
-        component: KontejnerComponent
+        component: KontejnerComponent,
+        resolve: {trening: KontejnerResolver}
     }
 ];
 

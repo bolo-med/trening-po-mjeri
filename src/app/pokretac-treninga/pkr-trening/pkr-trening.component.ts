@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { Trening } from 'src/app/sustina/Trening';
 import { TreningService } from 'src/app/sustina/trening.service';
@@ -13,7 +13,8 @@ import { PromjenaVjezbeEvent } from './../../sustina/PromjenaVjezbeEvent';
 })
 export class PkrTreningComponent implements OnInit {
 
-  trening: Trening;
+  @Input() trening: Trening;
+
   odmor: Vjezba;
   preostaloVrijemeTreninga: number;
   indeksTrenutneVjezbe: number;
@@ -32,8 +33,6 @@ export class PkrTreningComponent implements OnInit {
   constructor(private route: ActivatedRoute, private treningServis: TreningService) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.trening = this.treningServis.dajTrening(id);
     this.odmor = new Vjezba('odmor', 'Odmorite se', 'Kratak predah između vježbi.', this.trening.trajanjeOdmora, 'odmor.png', 'odmor.mp3');
     this.zapocniTrening();
   }

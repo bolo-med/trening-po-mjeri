@@ -6,6 +6,7 @@ import { PokretacTreningaRoutingModule } from './pokretac-treninga-routing.modul
 import { RazmjenaModule } from '../razmjena/razmjena.module';
 import { KontejnerComponent } from './kontejner/kontejner.component';
 import { ZvukComponent } from './zvuk/zvuk.component';
+import { KontejnerResolver } from './../pokretac-treninga/kontejner/kontejner.resolver';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,9 @@ import { ZvukComponent } from './zvuk/zvuk.component';
     CommonModule,
     PokretacTreningaRoutingModule,
     RazmjenaModule
+  ],
+  providers: [
+    KontejnerResolver
   ]
 })
 export class PokretacTreningaModule { }

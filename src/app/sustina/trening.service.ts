@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { NodeCompatibleEventEmitter } from 'rxjs/internal/observable/fromEvent';
-
 import { Trening } from './Trening';
 import { Vjezba } from './Vjezba';
 
@@ -80,6 +78,9 @@ export class TreningService {
         ['WU_ks_hJ7nY', 'E374izHLDL4', 'mGvzVjuY8SY']
       )
     );
+
+    // console.log(this.vjezbe);
+    
   }
 
   popuniTreninge() {

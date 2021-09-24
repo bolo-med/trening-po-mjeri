@@ -16,6 +16,8 @@ export class Vertikalni2Component implements OnInit {
 
   ngOnInit(): void {
     this.spisakVjezbi = this.treningService.dajVjezbe();
+    // console.log(this.spisakVjezbi);
+    // console.log(this.treningService.dajVjezbe());
   }
 
   dodajVjezbu(vjezba: Vjezba) {
@@ -30,8 +32,10 @@ export class Vertikalni2Component implements OnInit {
       vjezbaOrig.trajanje,
       vjezbaOrig.slika
     );
-    //if (vjezbaOrig.zvuk) vjezbaNova.zvuk = vjezbaOrig.zvuk;
-    //if (vjezbaOrig.snimci) vjezbaNova.snimci = vjezbaOrig.snimci.slice();
+    if (vjezbaOrig.zvuk) vjezbaNova.zvuk = vjezbaOrig.zvuk;
+    if (vjezbaOrig.snimci) vjezbaNova.snimci = vjezbaOrig.snimci.slice();
+    // console.log(vjezbaOrig);
+
     return vjezbaNova;
   }
 

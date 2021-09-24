@@ -16,11 +16,16 @@ export class ZvukComponent implements OnInit {
   @ViewChild('nekst') private next: ZvucnaSignalizacijaDirective;
   @ViewChild('sledeca') private sled: ZvucnaSignalizacijaDirective;
   
-  zvukSledece: string = '';
+  zvukSledece: string = 'odmor.mp3';
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  pocetak() {
+    // this.tik.nastavi(); // nece ovako
+    setTimeout(() => {this.tik.nastavi()}, 200);
   }
 
   stop() {
@@ -59,7 +64,7 @@ export class ZvukComponent implements OnInit {
     this.zvukSledece = prom.trenutna.zvuk;
     setTimeout(() => {this.sled.nastavi()}, 1000);
     // this.sled.nastavi(); // nece da pusti
-    console.log(this.zvukSledece);////////////////////////////////////////////////////////////////////////////////////////////////////
+    // console.log(this.zvukSledece);
   }
 
 }
