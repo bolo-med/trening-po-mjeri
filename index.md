@@ -1,37 +1,56 @@
-## Welcome to GitHub Pages
+## Aplikacija za fiskulturni trening
 
-You can use the [editor on GitHub](https://github.com/bolo-med/trening-po-mjeri/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+Aplikacija se sastoji iz dva dijela. Prvi služi za kreiranje i izmjenu vježbi i treninga. Drugi služi za vizuelni i zvučni prikaz toka treninga, kao svojevrsna pomoć pri treniranju.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+<br />
 
-### Markdown
+![01.png](/docs/assets/images/01.png)
+*Slika 1 - Stranica 'Kreiraj / Treninzi i vježbe / Svi treninzi' prikazuje sve treninge, koje su dostupne korisniku. Klikom na trening je moguće izvršiti izmjene.*
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+<br />
 
-```markdown
-Syntax highlighted code block
+![02.png](/docs/assets/images/02.png)
+*Slika 2 - Moguće je dodati novu vježbu iz menija sa strane, ukloniti vježbu, promijeniti raspored i trajanje vježbi. Moguća je izmjena ostalih podataka. Aplikacija vrši proračum ukupnog trajanja treninga.*
 
-# Header 1
-## Header 2
-### Header 3
+<br />
 
-- Bulleted
-- List
+![03.png](/docs/assets/images/03.png)
+*Slika 3 - Stranica 'Kreiraj / Treninzi i vježbe / Sve vježbe' prikazuje sve vježbe, koje su dostupne korisniku. Klikom na vježbu je moguće izvršiti izmjene.*
 
-1. Numbered
-2. List
+<br />
 
-**Bold** and _Italic_ and `Code` text
+![04.png](/docs/assets/images/04.png)
+*Slika 4 - Forma za izmjenu podataka o vježbi. Zvuk, ilustracija, video snimci.*
 
-[Link](url) and ![Image](src)
-```
+<br />
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+![05.png](/docs/assets/images/05.png)
+*Slika 5 - Forma zakreiranje novog treninga.*
 
-### Jekyll Themes
+<br />
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/bolo-med/trening-po-mjeri/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+![06.png](/docs/assets/images/06.png)
+*Slika 6 - Forma za kreiranje nove vježbe.*
 
-### Support or Contact
+<br />
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+![07.png](/docs/assets/images/07.png)
+*Slika 7 - Stranica 'Treniraj'. Prikazani su svi treninzi. Odabirom se započinje trening.*
+
+<br />
+
+![08.png](/docs/assets/images/08.png)
+*Slika 8 - Grafički prikaz toka treninga.*
+
+<br />
+
+## Neke od tehnologija
+
+- Angular modules za organizaciju koda
+- Child routing sa lazy loadingom
+- Route guards - Resolve<T>
+- Template-driven i Reactive forme
+- @Directive i @ViewChild - za upravljanje HTML audio elementima
+- @Output - za emitovanje custom događaja, za potrebe zvučne signalizacije
+- @Pipe - za transformaciju prikaza podataka
+- DomSanitizer - za URL-ove video snimaka, kako napadač ne bi mogao da ubaci JavaScript kod
