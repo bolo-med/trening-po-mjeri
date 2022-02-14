@@ -2,7 +2,7 @@
 
 *Kreiranje, izmjena i brisanje vježbe. Kreiranje i izmjena treninga. Kontrola toka treninga.*
 
-## Prezentacija projekta: https://bolo-med.github.io/dribbling-workout/
+## Prezentacija projekta: https://bolo-med.github.io/trening-po-mjeri/
 
 <br /><br /><br /><br /><br /><br /><br />
 
