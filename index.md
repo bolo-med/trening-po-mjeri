@@ -5,12 +5,12 @@ Aplikacija se sastoji iz dva dijela. Prvi služi za kreiranje i izmjenu vježbi 
 <br />
 
 ![01.png](/docs/assets/images/01.png)
-*Slika 1 - Stranica 'Kreiraj / Treninzi i vježbe / Svi treninzi' prikazuje sve treninge, koje su dostupne korisniku. Klikom na trening je moguće izvršiti izmjene.*
+*Slika 1 - Stranica 'Kreiraj / Treninzi i vježbe / Svi treninzi' prikazuje sve treninge, koji su dostupni korisniku. Klikom na trening je moguće izvršiti izmjene.*
 
 <br />
 
 ![02.png](/docs/assets/images/02.png)
-*Slika 2 - Moguće je dodati novu vježbu iz menija sa strane, ukloniti vježbu, promijeniti raspored i trajanje vježbi. Moguća je izmjena ostalih podataka. Aplikacija vrši proračum ukupnog trajanja treninga.*
+*Slika 2 - Moguće je dodati novu vježbu iz menija sa strane, ukloniti vježbu, promijeniti raspored i trajanje vježbi. Moguća je izmjena ostalih podataka. Aplikacija vrši proračun ukupnog trajanja treninga.*
 
 <br />
 
@@ -25,7 +25,7 @@ Aplikacija se sastoji iz dva dijela. Prvi služi za kreiranje i izmjenu vježbi 
 <br />
 
 ![05.png](/docs/assets/images/05.png)
-*Slika 5 - Forma zakreiranje novog treninga.*
+*Slika 5 - Forma za kreiranje novog treninga.*
 
 <br />
 
@@ -53,4 +53,4 @@ Aplikacija se sastoji iz dva dijela. Prvi služi za kreiranje i izmjenu vježbi 
 - @Directive i @ViewChild - za upravljanje HTML audio elementima
 - @Output - za emitovanje custom događaja, za potrebe zvučne signalizacije
 - @Pipe - za transformaciju prikaza podataka
-- DomSanitizer - za URL-ove video snimaka, kako napadač ne bi mogao da ubaci JavaScript kod
+- DomSanitizer - za URL-ove video snimaka, kako zlonamjerni korisnik ne bi mogao da ubaci JavaScript kod
